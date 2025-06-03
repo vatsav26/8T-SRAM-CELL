@@ -1,0 +1,26 @@
+Vdd 1 0 DC 1V
+Vwl 6 0 PULSE(5 0 0 0 0 10n 20n)
+Vbl 4 0 DC 0V
+Vblb 5 1 DC 0V
+Vrwl 7 0 DC 0V
+Vrbl 8 0 DC 0V
+
+.model pmod pmos level=54 version=4.7
+.model nmod nmos level=54 version=4.7
+
+M1 2 3 1 1 pmod W=20u L=1u
+M2 3 2 1 1 pmod W=20u L=1u
+M3 2 3 0 0 nmod W=10u L=1u
+M4 3 2 0 0 nmod W=10u L=1u
+
+M5 2 6 4 0 nmod W=10u L=1u
+M6 3 6 5 0 nmod W=10u L=1u
+
+M7 9 7 3 0 nmod W=10u L=1u
+M8 8 9 0 0 nmod W=10u L=1u
+
+.control
+tran 1n 100n
+plot V(2) V(3)
+.endc
+.end
